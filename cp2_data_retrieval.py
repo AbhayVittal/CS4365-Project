@@ -43,7 +43,7 @@ def get_block_spatial_data():
     Retrieve block spatial data for Austin.
     """
     payload = {
-        "query": "SELECT geoid, intptlat, intptlon, mtfcc, statefp"
+        "query": "SELECT geoid, intptlat, intptlon, mtfcc, statefp WHERE countyfp IN ('453')"
     }
     load_dotenv()
     api_key = os.getenv("SOCRATA_API_KEY")
@@ -77,7 +77,7 @@ def get_block_geojson():
     load_dotenv()
     api_key = os.getenv("SOCRATA_API_KEY")
     payload = {
-        "query": "SELECT *"
+        "query": "SELECT * WHERE countyfp IN ('453')"
     }
     headers = {
         "Content-Type": "application/json",

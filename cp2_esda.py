@@ -15,11 +15,14 @@ def load_geojson():
 
 def get_crime_rates(crime_data):
     crime_data['crime_rate'] = crime_data['crime_count'] / crime_data['Tot_Population_ACS_18_22'] * 1000
+    crime_data['crime_rate'] = crime_data['crime_rate'].fillna(0)  # Fill NaN values with 0 for blocks with no population
+    crime_data['crime_rate'] = crime_data['crime_rate'].replace([float('inf'), -float('inf')], 0)  # Replace infinite values with 0
     return crime_data
 
 def merge_geo_data(geo_data, block_data):
     geo_data['geoid'] = geo_data['geoid'].astype(int)
-    return geo_data.merge(block_data, on="geoid", how="left")
+    merged_data = geo_data.merge(block_data, on="geoid", how="left")
+    return merged_data
 
 def map_crime_counts(geo_crimes):
     fig, ax = plt.subplots(figsize=(10, 10))
@@ -103,11 +106,10 @@ def map_household_structure(geo_crimes):
 
 def main():
     geo_data = load_geojson()
-    print(len(geo_data))
     crime_data = load_agg_data()
     crime_data = get_crime_rates(crime_data)
     merged_data = merge_geo_data(geo_data, crime_data)
-    merged_data.to_csv("temp/merged_geo_data.csv", index=False)
+    merged_data.to_file("temp/merged_geo_data.geojson", index=False, driver="GeoJSON")
     map_crime_counts(merged_data)
     map_crime_rates(merged_data)
 

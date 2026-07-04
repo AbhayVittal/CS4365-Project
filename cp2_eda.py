@@ -13,7 +13,7 @@ def plot_top_10_crimes(data):
     crime_type_counts = data.groupby('crime_type').size().sort_values(ascending=False).head(10)
     fig, ax = plt.subplots(figsize=(10,6))
     sns.barplot(x=crime_type_counts.values, y=crime_type_counts.index, ax=ax, palette='Set2')
-    ax.set_title("Top 10 Crime Types in the City of Austin in 2025")
+    ax.set_title("Top 10 Crime Types in the City of Austin in 2024")
     ax.set_xlabel("Count")
     ax.set_ylabel("")
     plt.xticks(rotation=45)
