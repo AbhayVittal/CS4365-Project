@@ -15,8 +15,11 @@ def load_geojson():
 
 def get_crime_rates(crime_data):
     crime_data['crime_rate'] = crime_data['crime_count'] / crime_data['Tot_Population_ACS_18_22'] * 1000
-    crime_data['crime_rate'] = crime_data['crime_rate'].fillna(0)  # Fill NaN values with 0 for blocks with no population
-    crime_data['crime_rate'] = crime_data['crime_rate'].replace([float('inf'), -float('inf')], 0)  # Replace infinite values with 0
+    crime_data['crime_rate_family_violence'] = crime_data['Family Violence'] / crime_data['Tot_Population_ACS_18_22'] * 1000
+    crime_data['crime_rate_no_family_violence'] = crime_data['No Family Violence'] / crime_data['Tot_Population_ACS_18_22'] * 1000
+    for col in ['crime_rate', 'crime_rate_family_violence', 'crime_rate_no_family_violence']:
+        crime_data[col] = crime_data[col].fillna(0)  # Fill NaN values with 0 for blocks with no population
+        crime_data[col] = crime_data[col].replace([float('inf'), -float('inf')], 0)  # Replace infinite values with 0
     return crime_data
 
 def merge_geo_data(geo_data, block_data):
