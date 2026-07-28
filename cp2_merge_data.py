@@ -5,9 +5,9 @@ def load_preprocess_all_queried_data():
     """
     Load and preprocess all queried data from csv files.
     """
-    crime_df = pd.read_csv("temp/crime_data_2024.csv")
-    block_spatial_df = pd.read_csv("temp/block_spatial_data.csv")
-    census_df = pd.read_csv("temp/census_data.csv")
+    crime_df = pd.read_csv("data/crime_data_2024.csv")
+    block_spatial_df = pd.read_csv("data/block_spatial_data.csv")
+    census_df = pd.read_csv("data/census_data.csv")
 
     crime_df.drop(columns=[":id", ":version", ":created_at", ":updated_at"], inplace=True)
     block_spatial_df.drop(columns=[":id", ":version", ":created_at", ":updated_at"], inplace=True)
@@ -62,14 +62,14 @@ def main():
     all_dfs = load_preprocess_all_queried_data()
 
     merged_df = join_all_data(all_dfs)
-    merged_df.to_csv("temp/merged_data.csv", index=False)
+    merged_df.to_csv("data/merged_data.csv", index=False)
 
     crime_df = all_dfs["crime_df"]
     agg_crime_df = agg_crimes_by_block_group_and_family_violence(crime_df)
-    agg_crime_df.to_csv("temp/agg_crime_data.csv", index=False)
+    agg_crime_df.to_csv("data/agg_crime_data.csv", index=False)
 
     merged_agg_df = join_agg_crimes_spatial_socioeconomic(agg_crime_df, all_dfs["block_spatial_df"], all_dfs["census_df"])
-    merged_agg_df.to_csv("temp/merged_agg_data.csv", index=False)
+    merged_agg_df.to_csv("data/merged_agg_data.csv", index=False)
 
 if __name__ == "__main__":
     main()

@@ -14,10 +14,10 @@ CENSUS_DATA_URL = "https://api.census.gov/data/2024/pdb/blockgroup"
 BLOCK_GEOJSON_URL = "https://data.austintexas.gov/api/v3/views/dwa9-qvcr/query.geojson"
 
 def setup_directories():
-    os.makedirs("temp", exist_ok=True)
     os.makedirs("data", exist_ok=True)
     os.makedirs("plots", exist_ok=True)
     os.makedirs("maps", exist_ok=True)
+    os.makedirs("results", exist_ok=True)
 
 def get_crime_data():
     """
@@ -92,13 +92,13 @@ def get_block_geojson():
 def main():
     setup_directories()
     df = get_crime_data()
-    df.to_csv("temp/crime_data_2024.csv", index=False)
+    df.to_csv("data/crime_data_2024.csv", index=False)
     df = get_block_spatial_data()
-    df.to_csv("temp/block_spatial_data.csv", index=False)
+    df.to_csv("data/block_spatial_data.csv", index=False)
     df = get_census_data()
-    df.to_csv("temp/census_data.csv", index=False)
+    df.to_csv("data/census_data.csv", index=False)
     geo_data = get_block_geojson()
-    with open("temp/block_spatial_data.geojson", "w") as f:
+    with open("data/block_spatial_data.geojson", "w") as f:
         json.dump(geo_data, f, indent=2)
 if __name__ == "__main__":
     main()

@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 def load_merged_data_with_months():
-    data = pd.read_csv("temp/merged_data.csv")
+    data = pd.read_csv("data/merged_data.csv")
     data['date_time'] = pd.to_datetime(data['occ_date_time'])
     month_order = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     data['Month'] = pd.Categorical(data['date_time'].dt.month_name(), categories=month_order, ordered=True)
@@ -18,7 +18,7 @@ def plot_top_10_crimes(data):
     ax.set_ylabel("")
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.savefig("temp/top_10_crimes.png", dpi=300, bbox_inches='tight')
+    plt.savefig("plots/top_10_crimes.png", dpi=300, bbox_inches='tight')
     plt.close()
 
 def plot_monthly_counts(data):
@@ -30,7 +30,7 @@ def plot_monthly_counts(data):
     ax.set_ylabel("Event Count")
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.savefig("temp/monthly_counts.png", dpi=300, bbox_inches='tight')
+    plt.savefig("plots/monthly_counts.png", dpi=300, bbox_inches='tight')
     plt.close()
 
 def plot_monthly_counts_separated(data):
@@ -55,7 +55,7 @@ def plot_monthly_counts_separated(data):
     axes[1].tick_params(axis='x', rotation=45)
 
     plt.tight_layout()
-    plt.savefig("temp/monthly_counts_separated.png", dpi=300, bbox_inches='tight')
+    plt.savefig("plots/monthly_counts_separated.png", dpi=300, bbox_inches='tight')
     plt.close()
 
 def plot_monthly_counts_by_block(data):
@@ -67,7 +67,7 @@ def plot_monthly_counts_by_block(data):
     ax.set_ylabel("Event Count per Block Group")
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.savefig("temp/monthly_block_counts.png", dpi=300, bbox_inches='tight')
+    plt.savefig("plots/monthly_block_counts.png", dpi=300, bbox_inches='tight')
     plt.close()
 
 def plot_monthly_counts_by_block_separated(data):
@@ -93,7 +93,7 @@ def plot_monthly_counts_by_block_separated(data):
     axes[1].tick_params(axis='x', rotation=45)
 
     plt.tight_layout()
-    plt.savefig("temp/monthly_block_counts_separated.png", dpi=300, bbox_inches='tight')
+    plt.savefig("plots/monthly_block_counts_separated.png", dpi=300, bbox_inches='tight')
     plt.close()
 
 month_data = load_merged_data_with_months()

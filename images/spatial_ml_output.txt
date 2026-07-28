@@ -1,0 +1,84 @@
+ML_Lag
+ML_Error
+Spatial Lag Model Summary:
+REGRESSION RESULTS
+------------------
+
+SUMMARY OF OUTPUT: MAXIMUM LIKELIHOOD SPATIAL LAG (METHOD = FULL)
+------------------------------------------------------------------------------------
+Data set            :     unknown
+Weights matrix      :     unknown
+Dependent Variable  :  crime_rate                Number of Observations:         766
+Mean dependent var  :     81.5993                Number of Variables   :          12
+S.D. dependent var  :    146.3731                Degrees of Freedom    :         754
+Pseudo R-squared    :      0.3589
+Spatial Pseudo R-squared:  0.1986
+Log likelihood      :  -4760.9546
+Sigma-square ML     :  13857.5497                Akaike info criterion :    9545.909
+S.E of regression   :    117.7181                Schwarz criterion     :    9601.603
+
+------------------------------------------------------------------------------------
+            Variable     Coefficient       Std.Error     z-Statistic     Probability
+------------------------------------------------------------------------------------
+            CONSTANT       -27.62511        21.34488        -1.29423         0.19559
+pct_Prs_Blw_Pov_Lev_ACS_18_22         0.19569         0.34667         0.56447         0.57243
+pct_Female_No_SP_ACS_18_22         0.73427         0.48720         1.50710         0.13178
+pct_Diff_HU_1yr_Ago_ACS_18_22        -0.21928         0.35081        -0.62508         0.53192
+pct_Vacant_Units_ACS_18_22        -0.05651         0.49061        -0.11519         0.90830
+pct_PUB_ASST_INC_ACS_18_22        -0.72513         1.24223        -0.58374         0.55940
+Med_HHD_Inc_BG_ACS_18_22        -0.00011         0.00010        -1.06385         0.28740
+pct_Not_HS_Grad_ACS_18_22         1.16690         0.44844         2.60215         0.00926
+pct_HHD_No_Internet_ACS_18_22        -0.22515         0.60424        -0.37261         0.70944
+pct_NonFamily_HHD_ACS_18_22         1.46776         0.25698         5.71150         0.00000
+pct_Crowd_Occp_U_ACS_18_22        -0.68156         0.69012        -0.98760         0.32335
+        W_crime_rate         0.54185         0.04028        13.45132         0.00000
+------------------------------------------------------------------------------------
+
+SPATIAL LAG MODEL IMPACTS
+Impacts computed using the 'simple' method.
+            Variable         Direct        Indirect          Total
+pct_Prs_Blw_Pov_Lev_ACS_18_22         0.1957          0.2314          0.4271
+pct_Female_No_SP_ACS_18_22         0.7343          0.8684          1.6027
+pct_Diff_HU_1yr_Ago_ACS_18_22        -0.2193         -0.2593         -0.4786
+pct_Vacant_Units_ACS_18_22        -0.0565         -0.0668         -0.1233
+pct_PUB_ASST_INC_ACS_18_22        -0.7251         -0.8576         -1.5827
+Med_HHD_Inc_BG_ACS_18_22        -0.0001         -0.0001         -0.0002
+pct_Not_HS_Grad_ACS_18_22         1.1669          1.3801          2.5470
+pct_HHD_No_Internet_ACS_18_22        -0.2251         -0.2663         -0.4914
+pct_NonFamily_HHD_ACS_18_22         1.4678          1.7359          3.2037
+pct_Crowd_Occp_U_ACS_18_22        -0.6816         -0.8061         -1.4876
+================================ END OF REPORT =====================================
+
+Spatial Error Model Summary:
+REGRESSION RESULTS
+------------------
+
+SUMMARY OF OUTPUT: ML SPATIAL ERROR (METHOD = full)
+------------------------------------------------------------------------------------
+Data set            :     unknown
+Weights matrix      :     unknown
+Dependent Variable  :  crime_rate                Number of Observations:         766
+Mean dependent var  :     81.5993                Number of Variables   :          11
+S.D. dependent var  :    146.3731                Degrees of Freedom    :         755
+Pseudo R-squared    :      0.1781
+Log likelihood      :  -4762.8981
+Sigma-square ML     :  13783.0571                Akaike info criterion :    9547.796
+S.E of regression   :    117.4013                Schwarz criterion     :    9598.849
+
+------------------------------------------------------------------------------------
+            Variable     Coefficient       Std.Error     z-Statistic     Probability
+------------------------------------------------------------------------------------
+            CONSTANT        10.61269        23.70034         0.44779         0.65431
+pct_Prs_Blw_Pov_Lev_ACS_18_22         0.52400         0.39176         1.33758         0.18103
+pct_Female_No_SP_ACS_18_22         0.81001         0.49069         1.65077         0.09879
+pct_Diff_HU_1yr_Ago_ACS_18_22        -0.19543         0.35217        -0.55494         0.57894
+pct_Vacant_Units_ACS_18_22         0.04345         0.49653         0.08751         0.93026
+pct_PUB_ASST_INC_ACS_18_22        -0.90681         1.20687        -0.75138         0.45243
+Med_HHD_Inc_BG_ACS_18_22        -0.00020         0.00011        -1.84652         0.06482
+pct_Not_HS_Grad_ACS_18_22         1.09186         0.47118         2.31726         0.02049
+pct_HHD_No_Internet_ACS_18_22        -0.14515         0.60871        -0.23846         0.81153
+pct_NonFamily_HHD_ACS_18_22         1.57920         0.29145         5.41841         0.00000
+pct_Crowd_Occp_U_ACS_18_22        -0.45519         0.68108        -0.66833         0.50393
+              lambda         0.58317         0.04106        14.20168         0.00000
+------------------------------------------------------------------------------------
+================================ END OF REPORT =====================================

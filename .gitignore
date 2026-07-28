@@ -1,7 +1,12 @@
-data/
-maps/
+data/*
+!data/.gitkeep
+maps/*
+!maps/.gitkeep
+plots/*
+!plots/.gitkeep
+results/*
+!results/.gitkeep
 temp/
-plots/
 dist/
 pycache/
 pyc/

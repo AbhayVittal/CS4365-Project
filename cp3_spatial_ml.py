@@ -39,7 +39,7 @@ def tee_stdout(log_path):
         log_file.close()
 
 def load_geojson():
-    return gpd.read_file("temp/merged_geo_data.geojson")
+    return gpd.read_file("data/merged_geo_data.geojson")
 
 def get_spatial_weights(geo_data):
     geo_data = geo_data.set_index('geoid')
@@ -55,7 +55,7 @@ def morans_I(geo_data, weights):
         mi = Moran(y, weights)
         fig, ax = plot_moran(mi, zstandard=True, aspect_equal=True)
         fig.suptitle(f"Moran's Index Scatterplot for {col.replace('_', ' ').title()} in Austin, TX", fontsize=16)
-        plt.savefig(f"temp/morans_I_scatterplot_{col}.png")
+        plt.savefig(f"plots/morans_I_scatterplot_{col}.png")
         plt.close()
         morans_df.loc[len(morans_df)] = [col, mi.I, mi.p_sim]
     return morans_df
@@ -68,7 +68,7 @@ def lisa_cluster_analysis(geo_data, weights):
         fig, ax = plt.subplots(figsize=(10, 10))
         lisa_cluster(lisa, geo_data, p=0.05, ax=ax)
         ax.set_title(f"LISA Cluster Map for {col.replace('_', ' ').title()} in Austin, TX")
-        plt.savefig(f"temp/lisa_cluster_map_{col}.png")
+        plt.savefig(f"maps/lisa_cluster_map_{col}.png")
         plt.close()
 
 def skater_clustering(geo_data, weights):
@@ -92,7 +92,7 @@ def skater_clustering(geo_data, weights):
         ax.set_title(f"Skater Clustering (7 Clusters) for {category.replace('_', ' ').replace(',', '\n').title()} in Austin, TX")
         ax.text(0.5, -0.05, f"Variables:\n{'\n'.join(attributes)}", transform=ax.transAxes, fontsize=10, va='top', ha='center')
         plt.tight_layout()
-        plt.savefig(f"temp/skater_clustering_{category}.png")
+        plt.savefig(f"maps/skater_clustering_{category}.png")
         plt.close()
 
 def skater_clustering_with_crime_rates(geo_data, weights):
@@ -127,11 +127,11 @@ def skater_clustering_with_crime_rates(geo_data, weights):
 
     fig.suptitle("Skater Clustering Results for Variables Associated with Crime Rates in Austin, TX (7 Clusters)", fontsize=16)
     plt.tight_layout()
-    plt.savefig(f"temp/skater_clustering_crime_comparisons.png")
+    plt.savefig(f"maps/skater_clustering_crime_comparisons.png")
     plt.close()
 
 def main():
-    with tee_stdout("temp/spatial_ml_output.txt"):
+    with tee_stdout("results/spatial_ml_output.txt"):
         geo_data = load_geojson()
         w = get_spatial_weights(geo_data)
         morans_df = morans_I(geo_data, w)

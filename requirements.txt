@@ -4,10 +4,9 @@ matplotlib
 seaborn
 python-dotenv
 geopandas
-contextily
-shapely
 libpysal
 scikit-learn
 esda
 splot
 spopt
+joblib

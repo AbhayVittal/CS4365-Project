@@ -5,6 +5,7 @@ import libpysal as lp
 import spreg
 import matplotlib.pyplot as plt
 import geopandas as gpd
+import joblib
 
 @contextmanager
 def tee_stdout(log_path):
@@ -35,7 +36,7 @@ def tee_stdout(log_path):
         log_file.close()
 
 def load_geojson():
-    return gpd.read_file("temp/merged_geo_data.geojson")
+    return gpd.read_file("data/merged_geo_data.geojson")
 
 def get_spatial_weights(geo_data):
     geo_data = geo_data.set_index('geoid')
@@ -71,7 +72,7 @@ def map_spatial_predictions(geo_data, lag_model, error_model):
 
     fig.suptitle("Spatial Predictions of Crime Rates in Austin, TX", fontsize=16)
     plt.tight_layout()
-    plt.savefig("temp/spatial_predictions.png")
+    plt.savefig("maps/spatial_predictions.png")
 
 def get_separate_spatial_models(geo_data, weights, attributes):
     separated_models = {}
@@ -107,12 +108,12 @@ def map_separate_spatial_predictions(geo_data, separated_models):
         axes[1].axis('off')
         fig.suptitle("Spatial Predictions of Crime Rates in Austin, TX", fontsize=16)
         plt.tight_layout()
-        plt.savefig(f"temp/spatial_predictions_{col}.png")
+        plt.savefig(f"maps/spatial_predictions_{col}.png")
 
 
 
 def main():
-    with tee_stdout("temp/spatial_reg_output.txt"):
+    with tee_stdout("results/spatial_reg_output.txt"):
         geo_data = load_geojson()
         w = get_spatial_weights(geo_data)
         attributes = ['pct_Prs_Blw_Pov_Lev_ACS_18_22', 'pct_Female_No_SP_ACS_18_22', 'pct_Diff_HU_1yr_Ago_ACS_18_22', 'pct_Vacant_Units_ACS_18_22', 
@@ -123,6 +124,7 @@ def main():
         print(lag_model.summary)
         print("\nSpatial Error Model Summary:")
         print(error_model.summary)
+        joblib.dump((lag_model, error_model), 'results/spatial_models_crime_rate.pkl')
         map_spatial_predictions(geo_data, lag_model, error_model)
         separated_models = get_separate_spatial_models(geo_data, w, attributes)
         for col in ['crime_rate_family_violence', 'crime_rate_no_family_violence']:
@@ -130,6 +132,7 @@ def main():
             print(separated_models[col]['lag_model'].summary)
             print(f"\nSpatial Error Model Summary for {col.replace('_', ' ').title()}:")
             print(separated_models[col]['error_model'].summary)
+        joblib.dump(separated_models, 'results/separated_spatial_models.pkl')
         map_separate_spatial_predictions(geo_data, separated_models)
 
 if __name__ == "__main__":
