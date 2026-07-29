@@ -2,7 +2,6 @@ import pandas as pd
 import requests
 import os
 import json
-import geopandas as gpd
 from dotenv import load_dotenv
 
 CRIME_DATA_URL = "https://data.austintexas.gov/api/v3/views/fdj4-gpfu/query.json"

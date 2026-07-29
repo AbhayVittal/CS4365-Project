@@ -469,7 +469,11 @@ File Name | Description | Outputs
 |:--|:--|:--|
 cp2_data_retrieval.py | Retrieves data from Austin Data Portal and US Census Data Portal APIs. | data/crime_data_2024.csv <br> data/block_spatial_data.csv <br> data/census_data.csv <br> data/block_spatial_data.geojson
 cp2_merge_data.py | Joins and aggregates data into block group-level full datasets | data/merged_data.csv <br> data/agg_crime_data.csv <br> data/merged_agg_data.csv 
-cp2_eda.py | Conducts exploratory data analysis | 
+cp2_eda.py | Conducts exploratory data analysis | plots/monthly_counts.png <br> plots/monthly_counts_separated.png <br> plots/monthly_block_counts.png  <br> plots/monthly_block_counts_separated.png <br> plots/top_10_crimes.png
+cp2_esda.png | Conducts exploratory spatial data analysis | data/merged_geo_data.geojson <br> maps/crime_counts_map.png <br> maps/crime_rates_map.png <br> maps/economic_strain_map.png <br> maps/household_structure_map.png <br> maps/interpersonal_stress_map.png <br> maps/neighborhood_disadvantages_map_1.png <br> maps/neighborhood_disadvantages_map_2.png
+cp3_spatial_ml.py | Conducts spatial clustering algorithms | plots/morans_I_scatterplot_crime_rate.png <br> plots/morans_I_scatterplot_crime_rate_no_family_violence.png <br> plots/morans_I_scatterplot_crime_rate_family_violence.png <br> maps/lisa_cluster_map_crime_rate.png <br> maps/lisa_cluster_map_crime_rate_no_family_violence.png <br> maps/lisa_cluster_map_crime_rate_family_violence.png <br> maps/skater_clustering_economic_strain.png <br> maps/skater_clustering_household_structure.png <br> maps/skater_clustering_interpersonal_stress.png <br> maps/skater_clustering_neighborhood_disadvantages.png <br> maps/skater_clustering_crime_comparisons.png <br> results/spatial_ml_output.txt
+cp3_spatial_reg.py | Conduct spatial regression algorithms | maps/spatial_predictions.png <br> maps/spatial_predictions_crime_rate_no_family_violence.png <br> maps/spatial_predictions_crime_rate_family_violence.png <br> results/spatial_ml_output.txt <br> results/spatial_models_crime_rate.pkl <br> results/separated_spatial_models.pkl
+cp4_scenarios.py | Makes predictions based on economic scenarios | maps/predicted_crime_rate_scenarios.png <br> maps/predicted_crime_rate_no_family_violence_scenarios.png <br> maps/predicted_crime_rate_family_violence_scenarios.png <br> maps/predicted_crime_rate_net_difference.png <br> maps/predicted_crime_rate_no_family_violence_net_difference.png <br> maps/predicted_crime_rate_family_violence_net_difference.png
 
 _________________________________________
 
@@ -503,7 +507,7 @@ _______________________________________
 
 * This code block gets spatial data as a GeoJSON file for Austin via an API call
 
-* It gets censsus data from the government via a API key, for the three counties comprising the Austin metro area
+* It gets census data from the government via a API key, for the three counties comprising the Austin metro area
 
 * It sets up dedicated directories and converts some of the data into CSV files
 

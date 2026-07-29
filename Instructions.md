@@ -1,9 +1,9 @@
 # CS4365-Project
 ## Setup
-Before executing any of the scripts, API keys for the City of Austin (Socrata) and US Census Data Portal API keys must be created and put in a ```.env``` file. Use the following as a template:
+Before executing any of the scripts, API keys for the City of Austin (Socrata) and US Census Data Portal API keys must be created and put in a ```.env``` file placed in the project root directory. Use the following as a template:
 
 
-
+**`.env`**
 ```bash
 SOCRATA_API_KEY="your_API_key_here"
 CENSUS_API_KEY="your_API_key_here"
