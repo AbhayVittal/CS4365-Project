@@ -185,6 +185,8 @@ _________________________________________
 
 The goal of geospatial data mining is to generate insights grounded in a statistically rigorous methodology. The hypothesis to be tested includes the presence of global spatial patterns, local hotspots, and the existence of clusters comprising of crime rates along with relevant socioeconomic variables.
 
+The python script that runs this step is given as ```cp3_spatial_ml.py```
+
 ##### 5.1 Measures of global spatial autocorrelation (Moran's-I)
 
 The “Moran’s I” global test for spatial clustering tests the hypothesis if there is an inherent geospatial pattern in the variables of interest (crime rates) or if that is due to pure chance. There is clear statistical evidence of significant geospatial clustering in crime rates, as seen in the Moran-I scatterplots below for total crime, family violence and nonfamily violence rates. **Note that Moran's test is for crime rates and it's neighbourhood effects only, and does not include effects of other SES variables.**
@@ -275,6 +277,8 @@ In this study, both SAR and SEM regression analysis were completed for crime rat
 * **`pct_NonFamily_HHD_ACS_18_22`**: Percentage of Non-Family Households
 
 * **`pct_Crowd_Occp_U_ACS_18_22`**: Percentage of Crowded Occupied Housing Units
+
+The python sscript that runs this step is provided as ```cp3_spatial_reg.py```.
 
 ##### 6.1 Spatial Lag / Autoregressive Models (SAR)
 
@@ -410,6 +414,8 @@ From the literature review, during economic growth cycle real median household i
 
 The two variables included for generating economic scenarios are real median household income and poverty rate. These variables are also part of the variables included in the SAR model for total, family and non-family crime rates. Eight other critical SAS variables were selected based on results from cluster analysis as well as from domain insights (General Strain Theory and Social Disorganization Theory)
 
+The python script that runs this step is given as ```cp4_scenarios.py```
+
 ##### 7.1 Scenario 1 : *Economic Growth* and Crime Rates
 
 For this scenario, median household income (measured in dollars) was increased by 3% and poverty rate (in percent) was reduced (subtractive) by 2.5%. 
@@ -464,7 +470,7 @@ Specific to the Austin case study, a few items need to be noted. The SKATER anal
 
 I have gained a whole new set of skills while completing this project like linking socioeconomic theory with advanced spatial data analytics concepts; to building efficient, scalable open-source decision support tools. These skills are transferable to many enterprise computing use cases, making this a very valuable learning experience.
 
-This is the complete set of python script files to be executed in order, as well as the datasets, plots, and maps they produce:
+This is the complete set of python script files to be executed in order, as well as the datasets, plots, maps, and ML outputs they produce:
 
 File Name | Description | Outputs
 |:--|:--|:--|
