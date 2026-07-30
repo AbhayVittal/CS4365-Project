@@ -1,10 +1,10 @@
-## Geospatial Predictive Analytics and Decision Support Tool for Crime Analysis
+# Geospatial Predictive Analytics and Decision Support Tool for Crime Analysis
 
 ##### <mark>Submitted by: Abhay R. Vittal, Group 15, CS4365, 29 July 2026</mark>
 
-### 
+## 
 
-### Table of Contents
+## Table of Contents
 
 1. **Abstract**
 
@@ -75,17 +75,17 @@
 
 _______________________________________
 
-### Part 1 - Abstract
+## Part 1 - Abstract
 
 This technical report summarizes work done on my project on **Geospatial Analytics for Austin Crime data**, as part of my final project in CS4365 (Enterprise Computing). The goal of this activity was to develop a Python-based decision support tool for police and policy makers to help them understand the relationships between neighborhood crime patterns in Austin, TX, socio-economic status (SES) data and economic cycles. This tool is developed in the context of established socioeconomic theories of crime and neighborhood effects. This project includes an end-to-end workflow comprising of Python code for accessing geospatial data (GeoJSON) for the Austin area, combining it with different geospatial datasets (US census). It then conducts a variety of analyses including exploratory data analysis, Tests for global spatial autocorrelation (Moran's-I), local hot spot analysis (LISA) and Machine-Learning based spatial clustering (SKATER). The code then performs two types of spatial regression analyses including Spatial Autoregressive (SAR) and Spatial Error Models (SEM), with the goal of predicting crime rates per census block from SES variables. Finally, the code predicts neighborhood crime patterns for different economic scenarios, making this a complete analytics and decision support tool.
 
 __________________________________________________
 
-### Part 2 - Introduction and Background Context
+## Part 2 - Introduction and Background Context
 
 Police departments in large and small cities alike lack sophisticated data analytics tools that provide actionable insights. Crime data portals by nature are mostly descriptive and spatial analysis is mostly restricted to mapping. Under-resourced police departments have very fragmented databases and lack the insight and technical support to pull these datasets together to derive insights. This gap provides an opportunity to create integrated data analysis architecture to improve public safety and inform effective policing strategies. 
 
-##### 2.1 Literature Review on Theories of Crime and Neighborhoods
+#### 2.1 Literature Review on Theories of Crime and Neighborhoods
 
 A primary debate within the criminology literature surrounds the relative importance of physical signs of neighborhood disorder versus less visible signs of social disorder. The Broken Window Hypothesis is a social theory which states that crime is associated with a high degree of neighborhood disorder (Lanfear et al, 2020; Miceli & Segerson, 2024). Broken window policing is based on the premise that focusing on preventing low-level crimes deters more serious crimes without addressing the underlying social mechanisms that give rise to crime in the first place (Gau & Pratt, 2010). 
 
@@ -93,13 +93,13 @@ In addition, there are two related theories (Agnew, 1992) that specifically expl
 
 This creates a conundrum for law enforcement and local government with respect to where their efforts need to be prioritized - Should crime reduction policies mostly address minor crimes associated with only visible, physical signs of disorder or should strategies focus on the underlying factors that determine the core social cohesiveness of neighborhoods?
 
-##### 2.1 Literature Review on Geospatial Methdologies
+#### 2.1 Literature Review on Geospatial Methdologies
 
 Both Spatial Regression and Spatial data Mining are two powerful ways of studying data with a geographic component, specially to uncover hidden spatial patterns that provide insights and make models more accurate. Traditional statistics typically assumes the data points do not impact each other. However, spatial data violates this assumption as data points close to each other geographically are usually very similar – especially when looking at crime maps. Geospatial Regression corrects for this, by including location information (E.g. Spatial Autocorrelation) into the mathematical formulation of the regression models (Anselin, 1988; Chi & Zhu, 2020) - this improves their accuracy and inferential power. Geospatial Cluster Analysis uses special algorithms to group geographic features, isolate localized hot spots and identify unusual features that humans might miss (Han et al., 2012; Miller & Han, 2009). Together, these provide a powerful lens to understand crime patterns.  This project utilizes spatial data science methods to examine patterns of crime in the city of Austin, Texas to reveal areas for strategic intervention and determine the relative significance of socioeconomic vs physical indicators of crime. 
 
 **The final output of this project is a predictive decision support tool** to help the Austin Police Department to make strategic policing decisions including resource allocation, community engagement, and other crimemitigation policies. 
 
-##### 2.3 Project Plan and Deliverables
+#### 2.3 Project Plan and Deliverables
 
 | Milestone / Date | Deliverables                                  | Description                                                                                                                                                                                         |
 |:---------------- |:--------------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -114,9 +114,9 @@ Both Spatial Regression and Spatial data Mining are two powerful ways of studyin
 
 _________________________________________
 
-### Part 3 -  Building the dataset
+## Part 3 -  Building the dataset
 
-##### 1.1 Data Sources
+#### 1.1 Data Sources
 
 The first step was to access data from official sources using an API call to make the analysis reproducible. 2024 crimes data was retrieved from Austin Crime data API.  
 
@@ -126,7 +126,7 @@ Finally, socioeconomic, demographic, and housing characteristics data (SES) at t
 
 The python script that runs this step is given as ```cp2_data_retrieval.py```.
 
-##### 1.2 Data Cleaning
+#### 1.2 Data Cleaning
 
 The crime dataset was aggregated by census block group for geospatial data mining and regression. This was done as the finest resolution for which SES data was available which was the block group level.  
 
@@ -136,13 +136,13 @@ Finally, the dataset was cleaned by removing columns that were missing a lot of 
 
 The python script that runs this step is given as ```cp2_merge_data.py```.
 
-##### 1.3 Geospatial data pre-processing
+#### 1.3 Geospatial data pre-processing
 
 Python's PySAL libraries provide a comprehensive suite of methods for generating maps from GeoJSON shape files. The centroid coordinates for each Block ID are provided from the Austin crime data portal as standard latitute and longitide values, and these are converted into internal standard coordinate systems.
 
 _________________________________________
 
-### Part 4 - Exploratory Data Analysis
+## Part 4 - Exploratory Data Analysis
 
 The goal of exploratory data mining is to understand and
 visualize overall trends, anomalies and patterns in crime pattern data before
@@ -160,8 +160,6 @@ The next chart shows the monthly count of crime events. At this point, it is dif
 ![A](images/monthly_counts.png)
 
 Another way of visualizing temporal effects is by looking at crime events per block, over time. The goal is to see if there are any “outlier” blocks that have very high or low crime events. In this case, there are a set of block ID’s that have consistent high rates (outliers) over all time periods, indicating some spatial effect might exist. 
-
-
 
 ![T](images/monthly_block_counts.png)
 
@@ -181,13 +179,13 @@ The chart below shows total crime rates, where the crime rate has been normalize
 
 _________________________________________
 
-### Part 5 - Geospatial Data Mining
+## Part 5 - Geospatial Data Mining
 
 The goal of geospatial data mining is to generate insights grounded in a statistically rigorous methodology. The hypothesis to be tested includes the presence of global spatial patterns, local hotspots, and the existence of clusters comprising of crime rates along with relevant socioeconomic variables.
 
 The python script that runs this step is given as ```cp3_spatial_ml.py```
 
-##### 5.1 Measures of global spatial autocorrelation (Moran's-I)
+### 5.1 Measures of global spatial autocorrelation (Moran's-I)
 
 The “Moran’s I” global test for spatial clustering tests the hypothesis if there is an inherent geospatial pattern in the variables of interest (crime rates) or if that is due to pure chance. There is clear statistical evidence of significant geospatial clustering in crime rates, as seen in the Moran-I scatterplots below for total crime, family violence and nonfamily violence rates. **Note that Moran's test is for crime rates and it's neighbourhood effects only, and does not include effects of other SES variables.**
 
@@ -207,7 +205,7 @@ Moran's-I, **Non-family** violence rates ~ 0.36 (moderate-to-strong spatial auto
 
 The next step is to look for statistically significant local autocorrelation ("hotspots")
 
-##### Local Hot Spot Analysis (LISA)
+#### Local Hot Spot Analysis (LISA)
 
 The hypothesis that we have “local hotspots” was tested by performing a LISA clustering analysis (**Local Indicators of Spatial Association**). A Local Moran’s I score is calculated for each block group in the city of Austin, and here also, statistically significant clusters are seen that differ by crime types. Some of the theoretical frameworks that this study is based on appear to be substantiated.
 
@@ -225,7 +223,7 @@ The chart below shows the LISA cluster map for non-family violence crime rates
 
 Now that the existence of hot spots is clearly established, the focus is on looking at the coexistence of specific socioeconomic features with crime rates. This requires more advanced machine-learning based spatial clustering methods
 
-##### Spatial ML-Heirarchic Clustering (SKATER)
+#### Spatial ML-Heirarchic Clustering (SKATER)
 
 The next goal was to examine the existence and nature of crime rate spatial clusters ***jointly*** with other socioeconomic variables. One of the more sophisticated geospatial clustering methods is the SKATER algorithm (Spatial K-luster Analysis by Tree Edge Removal) which is based on maximizing similarity by hierarchical spatial graph learning – which is superior to standard machine learning methods that were planned earlier. This was done for total, family and non-family crime rates with additional socioeconomic variables drawn from the larger dataset. Multiple SKATER-based cluster maps were generated for socioeconomic variables based on crime theories. These clusters included a combination of crime rates and their theoretically relevant socioeconomic variables.
 
@@ -233,24 +231,25 @@ The map below shows SKATER-based spatial clusters for **neighborhood disadvantag
 
 ![A](images/skater_clustering_neighborhood_disadvantages.png)
 
-The map below shows SKATER-based spatial clusters for **Interpersonal Stress**. SES variables include percent of residents who have not completed high school, and households with no internet access. Here a larger high-risk pattern is detected that also overlaps with other clusters of distress
+The map below shows SKATER-based spatial clusters for **Interpersonal Stress**. SES variables include percent of residents who have not completed high school, and households with no internet access. Here a larger high-risk pattern is detected that also overlaps with other clusters of distress.
+
 ![A](images/skater_clustering_interpersonal_stress.png)
 
-The map below shows SKATER-based spatial clusters for **Economic Strain**. SES variables include (1) Percentage of households receiving public assistance income, and (2) Median Household Income. In general, Austin is a prosperous high-growth area with wealth and financial stability, but we do see small sections in the downtown urban areas with higher levels of economic strain when compared to the rest of the area
+The map below shows SKATER-based spatial clusters for **Economic Strain**. SES variables include (1) Percentage of households receiving public assistance income, and (2) Median Household Income. In general, Austin is a prosperous high-growth area with wealth and financial stability, but we do see small sections in the downtown urban areas with higher levels of economic strain when compared to the rest of the area.
 
 ![A](images/skater_clustering_economic_strain.png)
 
-The chart below shows SKATER-based spatial clusters for high-risk **Household Structures**. These are based on SAS variables like (1) Percent of non-family housing units, and (2) percentage of crowded occupied housing units. These are markers of high-stress living conditions which are associated with family (domestic) violence.
+The chart below shows SKATER-based spatial clusters for high-risk **Household Structures**. These are based on SES variables like (1) Percent of non-family housing units, and (2) percentage of crowded occupied housing units. These are markers of high-stress living conditions which are associated with family (domestic) violence.
 
 ![A](images/skater_clustering_household_structure.png)
 
-Overall, the SKATER analyses clearly show the existence of high-risk socioeconomic conditions that are clustered in areas that also have high rates of criminal activity. We also see spatial patterns in the SES categories that appear to be associated with the spatial differences in family and non-family violence patterns. So, the conclusion is there are statistically significant neighborhood effects (Moran’s-I) , there are significant hotspots in crime rates, and we have evidence that SAS variables could provide some explanation for the residual variance in crime rates beyond spatial effects alone. 
+Overall, the SKATER analyses clearly show the existence of high-risk socioeconomic conditions that are clustered in areas that also have high rates of criminal activity. We also see spatial patterns in the SES categories that appear to be associated with the spatial differences in family and non-family violence patterns. So, the conclusion is there are statistically significant neighborhood effects (Moran’s-I) , there are significant hotspots in crime rates, and we have evidence that SES variables could provide some explanation for the residual variance in crime rates beyond spatial effects alone. 
 
 The next step would be to build formal **predictive models that include spatial effects as well as SES variables**. This is done vis **spatial regression**, discussed in the next section.
 
 _________________________________________
 
-### Part 6 : Geospatial Regression
+## Part 6 : Geospatial Regression
 
 Ordinary Least Squares assumes that data observations are independent, however the Moran's-I score of 0.36 with a significant P-value proves significant spatial dependency exists. **Therefore, spatial modeling methods are needed**.
 
@@ -280,7 +279,7 @@ In this study, both SAR and SEM regression analysis were completed for crime rat
 
 The python sscript that runs this step is provided as ```cp3_spatial_reg.py```.
 
-##### 6.1 Spatial Lag / Autoregressive Models (SAR)
+### 6.1 Spatial Lag / Autoregressive Models (SAR)
 
 SAR Models add a spatially lagged dependent variable as an explanatory factor, and if that term is statistically significant it proves the importance of geospatial effects . SAR assumes crime in one block directly influences or spills over into neighboring blocks. the rest of the SES variables improve the predictive power of the model, makingit useful for predicting crime rates as SES conditions change.
 
@@ -343,7 +342,7 @@ The Appendix provides model outputs for other SAR cases for family and non-famil
 
 
 
-##### **6.2 Spatial Error models (SEM)**
+### 6.2 Spatial Error models (SEM)
 
 SEM account for spatial autocorrelation in the error term. This assumes that the spatial pattern is caused by unobserved variables missing from your dataset, and that’s detected in the residuals. Here also, the SES variables contrbute to overall model accuracy, reducing the number of "unobserved variables". 
 
@@ -406,23 +405,23 @@ In general, SAR models are preferred when the dependent variable (crime rates) i
 
 _________________________________________
 
-### Part 7 : Scenario Analysis
+## Part 7 : Scenario Analysis
 
 In this analysis, the current (2024) socioeconomic dataset is assumed to the reference “base case” . Literature surveys were conducted to generate realistic assumptions for a “good case” (economic expansion growth cycle) and “bad case” (low growth or economic depression).
 
 From the literature review, during economic growth cycle real median household incomes typically rise by 1.0%-4.5% per year (Dalakat 2026, Gould 2024), and poverty rates decline by ~ 0.86% per year (Winship, 2020). Growth cycles typically last 5.5 to 6 years. During a typical recession, real median household incomes drop by 0.7% to 4.2% per year and poverty rates increase by 0.5%-1.1% per year (Shierholz, 2009).
 
-The two variables included for generating economic scenarios are real median household income and poverty rate. These variables are also part of the variables included in the SAR model for total, family and non-family crime rates. Eight other critical SAS variables were selected based on results from cluster analysis as well as from domain insights (General Strain Theory and Social Disorganization Theory)
+The two variables included for generating economic scenarios are real median household income and poverty rate. These variables are also part of the variables included in the SAR model for total, family and non-family crime rates. Eight other critical SES variables were selected based on results from cluster analysis as well as from domain insights (General Strain Theory and Social Disorganization Theory)
 
 The python script that runs this step is given as ```cp4_scenarios.py```
 
-##### 7.1 Scenario 1 : *Economic Growth* and Crime Rates
+### 7.1 Scenario 1 : *Economic Growth* and Crime Rates
 
 For this scenario, median household income (measured in dollars) was increased by 3% and poverty rate (in percent) was reduced (subtractive) by 2.5%. 
 
 Three SAR models were developed to predict crime rates (total, family and non-family) as a function of spatial effects and the ten selected SES variables. 
 
-##### 7.2 Scenario 2 : *Economic Recession* and Crime Rates
+### 7.2 Scenario 2 : *Economic Recession* and Crime Rates
 
 For this scenario, median household income (measured in dollars) was decreased by 3% and poverty rate (in percent) was increased (additive) by 2.5%. 
 
@@ -460,7 +459,7 @@ The "difference" maps below indicate that the models are able to capture subtle 
 
 _________________________________________
 
-### Part 8 : Conclusions and Execution Instructions
+## Part 8 : Conclusions and Execution Instructions
 
 A complete geospatial analytics workflow has been completed using Python libraries. This starts with code for data acquisition, cleaning and merging; followed by data cleaning and formatting into geospatial formats. There are scalable python functions for exploratory data analysis, spatial data mining (Moram’s-I, LISA, SLATER) as well as spatial regression (SAR, SEM). Code has been written for simulating scenarios and generating maps with supporting diagnostics for decision support. 
 
@@ -484,7 +483,7 @@ cp4_scenarios.py | Makes predictions based on economic scenarios | maps/predicte
 
 _________________________________________
 
-### Part 9 - References
+## Part 9 - References
 
 * Agnew, R. (1992). Foundation for a general strain theory of crime & delinquency. Criminology, 30(1), 47–88
 * Anselin, L. (1988). Spatial econometrics: Methods and models. Kluwer Academic Publishers.
@@ -508,9 +507,9 @@ _________________________________________
 
 _______________________________________
 
-### Part 10 - Appendix - Python Code Listing
+## Part 10 - Appendix - Python Code Listing
 
-#### 10.1 Python Code (cp2_data_retrieval.py) for Data Retrieval
+### 10.1 Python Code (cp2_data_retrieval.py) for Data Retrieval
 
 * This code block gets spatial data as a GeoJSON file for Austin via an API call
 
@@ -585,7 +584,7 @@ if __name__ == "__main__":
     main()    
 ```
 
-#### 10.2 Python Code for Merging Data
+### 10.2 Python Code for Merging Data
 
 * All the queried CSV files are read into pandas dataframes
 
@@ -673,7 +672,7 @@ if __name__ == "__main__":
     main()
 ```
 
-#### 10.3 Python code, Exploratory Data Analysis (cp2_merge_data.py)
+### 10.3 Python code, Exploratory Data Analysis (cp2_merge_data.py)
 
 * The data is plotted in a variety of ways, including
   
@@ -790,7 +789,7 @@ plot_monthly_counts(month_data)
 plot_top_10_crimes(month_data)
 ```
 
-#### 10.4 Python Code, Exploratory Spatial Data Analysis (cp2_esda.py)
+### 10.4 Python Code, Exploratory Spatial Data Analysis (cp2_esda.py)
 
 This includes a variety of geospatial spatial analyses, including
 
@@ -924,7 +923,7 @@ if __name__ == "__main__":
     main()
 ```
 
-#### 10.5 Spatial Data Mining : Moran's-I, LISA & SKATER (cp3_spatial_ml.py)
+### 10.5 Spatial Data Mining : Moran's-I, LISA & SKATER (cp3_spatial_ml.py)
 
 The python code performs the following calculations for each crime type (total, family and non-family)
 
@@ -1085,7 +1084,7 @@ if __name__ == "__main__":
     main()
 ```
 
-#### 10.6 Spatial Regression (cp3_spatial_reg.py)
+### 10.6 Spatial Regression (cp3_spatial_reg.py)
 
 * The data is loaded, and spatial weights are calculated
 
@@ -1237,7 +1236,7 @@ if __name__ == "__main__":
     main()
 ```
 
-#### 10.7 Scenario Analysis (cp4_scenarios.py)
+### 10.7 Scenario Analysis (cp4_scenarios.py)
 
 * In this code, spatial models (SAR) for the base case created in Section 10.3 are loaded into the workspace. 
 
@@ -1347,9 +1346,9 @@ if __name__ == "__main__":
     main()
 ```
 
-### Part 11. Appendix -  Spatial Regression Model Details and Diagnostics
+## Part 11. Appendix -  Spatial Regression Model Details and Diagnostics
 
-#### 11.1 Spatial Lag / Autoregressive Model, Family Violence
+### 11.1 Spatial Lag / Autoregressive Model, Family Violence
 
 ```text
 Spatial Lag Model Summary for Crime Rate Family Violence:
@@ -1403,7 +1402,7 @@ pct_Crowd_Occp_U_ACS_18_22        -0.0200         -0.0131         -0.0330
 
 ```
 
-#### 11.2 Spatial Lag / Autoregressive Model, Non-Family Violence
+### 11.2 Spatial Lag / Autoregressive Model, Non-Family Violence
 
 ```text
 Spatial Lag Model Summary for Crime Rate No Family Violence:
@@ -1456,7 +1455,7 @@ pct_Crowd_Occp_U_ACS_18_22        -0.6569         -0.8008         -1.4577
 ================================ END OF REPORT =====================================
 ```
 
-#### 11.3 Spatial Error Model, Family Violence
+### 11.3 Spatial Error Model, Family Violence
 
 ```text
 Spatial Error Model Summary for Crime Rate Family Violence:
@@ -1494,7 +1493,7 @@ pct_Crowd_Occp_U_ACS_18_22        -0.00431         0.04191        -0.10295      
 ================================ END OF REPORT =====================================
 ```
 
-#### 11.4 Spatial Error Model, Non-Family Violence
+### 11.4 Spatial Error Model, Non-Family Violence
 
 ```text
 Spatial Error Model Summary for Crime Rate No Family Violence:
