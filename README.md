@@ -285,7 +285,7 @@ SAR Models add a spatially lagged dependent variable as an explanatory factor, a
 
 Model output results for typical SAR case (total crime rates) are shown below. Variables with low P-values indicate they are statistical significant. The Pseudo-Rsq of 36% is typical for social science models. The "Spatial Weights" term (W_crime_rate) is extremely significant, as expected.
 
-The text below shows the SAR model (Spatial Lag) results for total crime rates
+The text below shows the SAR (Spatial Lag Model) results for total crime rates.
 
 ```text
 REGRESSION RESULTS
@@ -346,7 +346,7 @@ The Appendix provides model outputs for other SAR cases for family and non-famil
 
 SEM account for spatial autocorrelation in the error term. This assumes that the spatial pattern is caused by unobserved variables missing from your dataset, and that’s detected in the residuals. Here also, the SES variables contrbute to overall model accuracy, reducing the number of "unobserved variables". 
 
-The text below shows the SAR model (Spatial Lag) results for total crime rates. The spatial autoregressive coefficient for the error vector, "lambda", is significant.
+The text below shows the SEM (Spatial Error Model) results for total crime rates. The spatial autoregressive coefficient for the error vector, "lambda", is significant.
 
 ```text
 Spatial Error Model Summary:
