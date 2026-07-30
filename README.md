@@ -163,7 +163,7 @@ Another way of visualizing temporal effects is by looking at crime events per bl
 
 ![T](images/monthly_block_counts.png)
 
-Based on crime theories discussed earlier, and using the standard government crime classification system, the crime types have been aggregated into family violence and non-family violence. The next chart shows the monthly trend of crime events by crime category. ![A](C:\Users\samee\OneDrive\Desktop\checkpoint%204\images\monthly_counts_separated.png)
+Based on crime theories discussed earlier, and using the standard government crime classification system, the crime types have been aggregated into family violence and non-family violence. The next chart shows the monthly trend of crime events by crime category. ![A](images/monthly_counts_separated.png)
 
 The chart below is a monthlyboxplot where each data point is the crime count by crime type per block ID. There is a clear diffeenc in the outlier patterns across the two categories.
 
@@ -173,7 +173,7 @@ Next, the crime counts per Block ID are plotted on maps. The chart below shows a
 
 ![A](images/crime_counts_map.png)
 
-The chart below shows total crime rates, where the crime rate has been normalized by the population in each block. This rate is expressed as crimes per 100000 residents. Here a more nuamced picture emerges, and we see several blocks that have high crime rates.
+The chart below shows total crime rates, where the crime rate has been normalized by the population in each block. This rate is expressed as crimes per 1000 residents. Here a more nuamced picture emerges, and we see several blocks that have high crime rates.
 
 ![A](images/crime_rates_map.png)
 
