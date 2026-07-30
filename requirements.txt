@@ -9,4 +9,5 @@ scikit-learn
 esda
 splot
 spopt
+spreg
 joblib

@@ -1,6 +1,6 @@
 ## Geospatial Predictive Analytics and Decision Support Tool for Crime Analysis
 
-##### <mark>Submitted by: Abhay R. Vittal, Group 15, CS4365, 25 July 2026</mark>
+##### <mark>Submitted by: Abhay R. Vittal, Group 15, CS4365, 29 July 2026</mark>
 
 ### 
 
@@ -103,13 +103,14 @@ Both Spatial Regression and Spatial data Mining are two powerful ways of studyin
 
 | Milestone / Date | Deliverables                                  | Description                                                                                                                                                                                         |
 |:---------------- |:--------------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Checkpoint 1,    | Proposal and Project Plan                     | Problem Identification, Literature Review, Theoretical Framework, Analytical & Methodological Approach, Datasets research, Technical Implementation Approach                                        |
-| Checkpoint 2,    | Merged, Cleaned Dataset + Code                | API access for Data retrieval, including crime data, centers of population data, socioeconomic and demographic data.                                                                                |
-| Checkpoint 2,    | Exploratory Data Analysis Plots, Code         | Plots of crime rates by type, count and rate; Box plots of crime rates in time, crime type details                                                                                                  |
-| Checkpoint 3,    | Code & Spatial Autocorrelation and Hot Spots  | Maps and histograms of global autocorrelation analysis (Moran's-I) andlocal hotspot analysis (LISA)                                                                                                 |
-| Checkpoint 3,    | Spatial ML-Cluster Maps and Diagnostics, Code | Maps of ML-Based Clustering (SKATER) for crime rates and key socioeconomic variables                                                                                                                |
-| Checkpoint 3,    | Spatial Regression Models and Maps, Code      | Spatial Statistical Regression (SAR, SES) models to predict crime rates as a function of spatial effects,  and socio-economic variables. Includes model details, predictions, diagnostics and maps. |
-| Checkpoint 4,    | Scenario Analysis, Project readme, Code, Maps | Results from applying the spatial regression model to future economic growth scenarios (high growth, low growth and status quo) with maps that show their impact on forecasted crime rates.         |
+| Checkpoint 1    | Proposal and Project Plan                     | Problem Identification, Literature Review, Theoretical Framework, Analytical & Methodological Approach, Datasets research, Technical Implementation Approach                                        |
+| Checkpoint 2    | Merged, Cleaned Dataset + Code                | API access for Data retrieval, including crime data, centers of population data, socioeconomic and demographic data.                                                                                |
+| Checkpoint 2    | Exploratory Data Analysis Plots, Code         | Plots of crime rates by type, count and rate; Box plots of crime rates in time, crime type details                                                                                                  |
+| Checkpoint 2    | Exploratory Spatial Data Analysis Maps, Code. | Choropleth maps of crime rates by type, socioeconomic variables by category.
+| Checkpoint 3    | Code & Spatial Autocorrelation and Hot Spots  | Maps and histograms of global autocorrelation analysis (Moran's-I) andlocal hotspot analysis (LISA)                                                                                                 |
+| Checkpoint 3    | Spatial ML-Cluster Maps and Diagnostics, Code | Maps of ML-Based Clustering (SKATER) for crime rates and key socioeconomic variables                                                                                                                |
+| Checkpoint 3    | Spatial Regression Models and Maps, Code      | Spatial Statistical Regression (SAR, SES) models to predict crime rates as a function of spatial effects,  and socio-economic variables. Includes model details, predictions, diagnostics and maps. |
+| Checkpoint 4    | Scenario Analysis, Project readme, Code, Maps | Results from applying the spatial regression model to future economic growth scenarios (high growth, low growth and status quo) with maps that show their impact on forecasted crime rates.         |
 
 _________________________________________
 

@@ -31,4 +31,4 @@ cp3_spatial_reg.py
 cp4_scenarios.py
 ```
 
-All datasets, plots, and maps are placed in the respective ```data```, ```plots```, and ```maps``` directories.
+All datasets, plots, maps, and results are placed in the respective ```data```, ```plots```, ```maps```, and ```results``` directories.
